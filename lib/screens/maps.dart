@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Maps extends StatefulWidget {
   const Maps({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class Maps extends StatefulWidget {
 }
 
 class _MapsState extends State<Maps> {
-  late Position _currentPosition;
+  Position? _currentPosition; // Change Position to Position?
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class _MapsState extends State<Maps> {
           children: <Widget>[
             if (_currentPosition != null)
               Text(
-                "LAT: ${_currentPosition.latitude}, LNG: ${_currentPosition.longitude}",
+                "LAT: ${_currentPosition!.latitude}, LNG: ${_currentPosition!.longitude}",
               ),
             TextButton(
               child: const Text("Get location"),
@@ -33,7 +34,8 @@ class _MapsState extends State<Maps> {
                 _getCurrentLocation();
               },
             ),
-          ],
+            if(_currentPosition !=null) GoogleMap(initialCameraPosition: CameraPosition(target: LatLng(_currentPosition!.latitude, _currentPosition!.longitude)))
+              ],
         ),
       ),
     );
@@ -52,3 +54,4 @@ class _MapsState extends State<Maps> {
     });
   }
 }
+
