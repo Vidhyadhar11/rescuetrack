@@ -39,6 +39,8 @@ dependencies:
   json_serializable: ^6.7.1
   json_annotation: ^4.8.1
   google_fonts: ^5.1.0
+  geolocator: ^10.0.1
+  geocoding: 2.1.0
 
 dev_dependencies:
   flutter_test:
