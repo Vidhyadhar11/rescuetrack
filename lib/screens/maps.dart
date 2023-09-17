@@ -12,7 +12,8 @@ class Maps extends StatefulWidget {
 }
 
 class _MapsState extends State<Maps> {
-  Position? _currentPosition; // Change Position to Position?
+  Position? _currentPosition;
+  late GoogleMapController _controller;
 
   @override
   Widget build(BuildContext context) {
@@ -23,29 +24,47 @@ class _MapsState extends State<Maps> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             if (_currentPosition != null)
-              Text(
-                "LAT: ${_currentPosition!.latitude}, LNG: ${_currentPosition!.longitude}",
+              Expanded(
+                child: GoogleMap(
+                  onMapCreated: _onMapCreated,
+                  initialCameraPosition: CameraPosition(
+                    target: LatLng(
+                      _currentPosition!.latitude,
+                      _currentPosition!.longitude,
+                    ),
+                    zoom: 20.0, // You can adjust the initial zoom level
+                  ),
+                ),
               ),
-            TextButton(
-              child: const Text("Get location"),
-              onPressed: () {
-                _getCurrentLocation();
-              },
-            ),
-            if(_currentPosition !=null) GoogleMap(initialCameraPosition: CameraPosition(target: LatLng(_currentPosition!.latitude, _currentPosition!.longitude)))
-              ],
+            // TextButton(
+            //   onPressed: _getCurrentLocation,
+            //   child: const Text("Get Current Location"),
+            // ),
+            if (_currentPosition == null)
+              const Text("Location not available"),
+          ],
         ),
       ),
     );
+  }
+
+  void _onMapCreated(GoogleMapController controller) {
+    _controller = controller;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getCurrentLocation();
   }
 
   void _getCurrentLocation() {
     Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.best,
       forceAndroidLocationManager: true,
-    ).then((Position position) {
+    ).then((Position? position) {
       setState(() {
         _currentPosition = position;
       });
