@@ -45,5 +45,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	
+	<key>NSLocationWhenInUseUsageDescription</key>
+<string>this application requires the location permission for showing the users location on the map</string>
+
 </dict>
 </plist>
