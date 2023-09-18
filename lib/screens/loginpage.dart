@@ -1,9 +1,9 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:rescuetrack/screens/homescreen.dart';
 
 class Loginpage extends StatelessWidget {
-  // ignore: use_key_in_widget_constructors
   const Loginpage({Key? key});
 
   @override
@@ -58,7 +58,9 @@ class Loginpage extends StatelessWidget {
                       height: 30.0,
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context,'/home');
+                      },
                       style: TextButton.styleFrom(),
                       child: const Text("    Login    "),
                     ),

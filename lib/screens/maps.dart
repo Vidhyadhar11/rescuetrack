@@ -41,7 +41,7 @@ class _MapsState extends State<Maps> {
                   markers: _markers,
                 ),
               ),
-            if (_currentPosition == null) const Text("Location not available"),
+            // if (_currentPosition == null) const Text("Location not available"),
           ],
         ),
       ),
