@@ -14,6 +14,7 @@ class Maps extends StatefulWidget {
 class _MapsState extends State<Maps> {
   Position? _currentPosition;
   late GoogleMapController _controller;
+  final Set<Marker> _markers = {}; // Set to store markers
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +37,9 @@ class _MapsState extends State<Maps> {
                     ),
                     zoom: 20.0, // You can adjust the initial zoom level
                   ),
+                  markers: _markers, // Set of markers to display on the map
                 ),
               ),
-            // TextButton(
-            //   onPressed: _getCurrentLocation,
-            //   child: const Text("Get Current Location"),
-            // ),
             if (_currentPosition == null)
               const Text("Location not available"),
           ],
@@ -52,6 +50,8 @@ class _MapsState extends State<Maps> {
 
   void _onMapCreated(GoogleMapController controller) {
     _controller = controller;
+    // Call a function to add a marker when the map is created
+    _addMarker();
   }
 
   @override
@@ -72,5 +72,24 @@ class _MapsState extends State<Maps> {
       print(e);
     });
   }
-}
 
+  void _addMarker() {
+    // Add a marker at the current position
+    if (_currentPosition != null) {
+      Marker newMarker = Marker(
+        markerId: const MarkerId("currentLocation"),
+        position: LatLng(
+          _currentPosition!.latitude,
+          _currentPosition!.longitude,
+        ),
+        infoWindow: const InfoWindow(
+          title: "Current Location",
+        ),
+      );
+
+      setState(() {
+        _markers.add(newMarker);
+      });
+    }
+  }
+}
