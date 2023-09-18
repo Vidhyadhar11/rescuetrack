@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class Maps extends StatefulWidget {
   const Maps({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class Maps extends StatefulWidget {
 class _MapsState extends State<Maps> {
   Position? _currentPosition;
   late GoogleMapController _controller;
-  final Set<Marker> _markers = {}; 
+  final Set<Marker> _markers = {};
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +36,12 @@ class _MapsState extends State<Maps> {
                       _currentPosition!.latitude,
                       _currentPosition!.longitude,
                     ),
-                    zoom: 15.0, 
+                    zoom: 15.0,
                   ),
-                  markers: _markers, 
+                  markers: _markers,
                 ),
               ),
-            if (_currentPosition == null)
-              const Text("Location not available"),
+            if (_currentPosition == null) const Text("Location not available"),
           ],
         ),
       ),
@@ -59,17 +59,23 @@ class _MapsState extends State<Maps> {
     _getCurrentLocation();
   }
 
-  void _getCurrentLocation() {
-    Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.best,
-      forceAndroidLocationManager: true,
-    ).then((Position? position) {
-      setState(() {
-        _currentPosition = position;
+  void _getCurrentLocation() async {
+    final status = await Permission.location.request();
+
+    if (status.isGranted) {
+      Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best,
+        forceAndroidLocationManager: true,
+      ).then((Position? position) {
+        setState(() {
+          _currentPosition = position;
+        });
+      }).catchError((e) {
+        print(e);
       });
-    }).catchError((e) {
-      print(e);
-    });
+    } else {
+      print("Location permission denied");
+    }
   }
 
   void _addMarker() {
