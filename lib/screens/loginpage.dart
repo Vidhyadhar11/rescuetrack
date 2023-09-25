@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, use_key_in_widget_constructors
+// ignore_for_file: file_names, use_key_in_widget_constructors, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:rescuetrack/screens/homescreen.dart';
@@ -28,7 +28,6 @@ class Loginpage extends StatelessWidget {
                 decoration: const BoxDecoration(
                   color: Color.fromRGBO(237, 236, 236, 0.511),
                   borderRadius: BorderRadius.all(Radius.circular(32)),
-                  // border: Border(bottom: BorderSide(strokeAlign: BorderSide.strokeAlignInside))
                 ),
                 child: Column(
                   children: [
@@ -59,7 +58,7 @@ class Loginpage extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context,'/home');
+                        Navigator.pushNamed(context, '/home');
                       },
                       style: TextButton.styleFrom(),
                       child: const Text("    Login    "),
