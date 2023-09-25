@@ -1,7 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:rescuetrack/screens/homescreen.dart';
+import 'package:rescuetrack/screens/homepage.dart';
 import 'package:rescuetrack/screens/maps.dart';
 import 'package:rescuetrack/screens/profilepage.dart';
 // import 'package:google_fonts/google_fonts.dart';
