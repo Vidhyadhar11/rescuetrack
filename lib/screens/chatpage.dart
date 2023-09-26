@@ -4,11 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:rescuetrack/screens/homepage.dart';
 
 
-class DetailsPage extends StatelessWidget {
+class ChatPage extends StatefulWidget {
   final CardData cardData;
 
-  DetailsPage({required this.cardData});
+  ChatPage({required this.cardData});
 
+  @override
+  State<ChatPage> createState() => _ChatPageState();
+}
+
+class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,14 +25,14 @@ class DetailsPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              cardData.imagePath,
+              widget.cardData.imagePath,
               width: 200,
               height: 200,
               fit: BoxFit.cover,
             ),
             const SizedBox(height: 16),
             Text(
-              cardData.label,
+              widget.cardData.label,
               style: const TextStyle(fontSize: 24),
             ),
           ],
