@@ -36,7 +36,7 @@ class _MapsState extends State<Maps> {
                       _currentPosition!.latitude,
                       _currentPosition!.longitude,
                     ),
-                    zoom: 10.0,
+                    zoom: 16.0,
                   ),
                   markers: _markers,
                 ),

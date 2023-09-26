@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:rescuetrack/screens/homepage.dart';
 
-
 class ChatPage extends StatefulWidget {
   final CardData cardData;
 
@@ -14,29 +13,63 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  final TextEditingController _messageController = TextEditingController();
+  final List<String> _messages = [];
+
+  void _sendMessage(String message) {
+    setState(() {
+      _messages.add(message);
+    });
+  }
+
+  void _handleMessageInput(String message) {
+    if (message.isNotEmpty) {
+      _sendMessage(message);
+      _messageController.clear();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Card Details'),
+        title: const Text('chat'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              widget.cardData.imagePath,
-              width: 200,
-              height: 200,
-              fit: BoxFit.cover,
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: ListView.builder(
+              itemCount: _messages.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  title: Text(_messages[index]),
+                );
+              },
             ),
-            const SizedBox(height: 16),
-            Text(
-              widget.cardData.label,
-              style: const TextStyle(fontSize: 24),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: TextField(
+                    controller: _messageController,
+                    decoration: const InputDecoration(
+                      hintText: "Enter your message...",
+                    ),
+                    onSubmitted: _handleMessageInput,
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.send_rounded),
+                  onPressed: () {
+                    _handleMessageInput(_messageController.text);
+                  },
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
