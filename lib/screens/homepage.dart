@@ -1,9 +1,7 @@
 // ignore_for_file: avoid_web_libraries_in_flutter, use_key_in_widget_constructors, annotate_overrides
 
-
 import 'package:flutter/material.dart';
-import 'package:rescuetrack/screens/detailspage.dart';
-
+import 'package:rescuetrack/screens/chatpage.dart';
 
 class CardData {
   final String imagePath;
@@ -66,7 +64,7 @@ class Homepage extends StatelessWidget {
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 8,
-        mainAxisSpacing: 8,
+        mainAxisSpacing: 16,
       ),
       itemCount: CardData.cardDataList.length,
       itemBuilder: (BuildContext context, int index) {
@@ -77,13 +75,13 @@ class Homepage extends StatelessWidget {
 
   Widget buildCard(BuildContext context, CardData cardData) {
     return Card(
-      elevation: 3,
+      elevation: 5,
       child: InkWell(
         onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => DetailsPage(
+              builder: (context) => ChatPage(
                 cardData: cardData,
               ),
             ),
@@ -92,14 +90,18 @@ class Homepage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              cardData.imagePath,
+            SizedBox(
+              height: 110,
               width: 150,
-              height: 150,
-              fit: BoxFit.cover,
+              child: Image.asset(
+                cardData.imagePath,
+                width: 100,
+                height: 100,
+                fit: BoxFit.fitHeight,
+              ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.fromLTRB(0, 11.0, 0, 6.0),
               child: Text(
                 cardData.label,
                 style: const TextStyle(fontSize: 16),
