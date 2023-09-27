@@ -1,7 +1,10 @@
 // ignore_for_file: avoid_web_libraries_in_flutter, use_key_in_widget_constructors, annotate_overrides
 
 import 'package:flutter/material.dart';
+import 'package:rescuetrack/screens/arpage.dart';
 import 'package:rescuetrack/screens/chatpage.dart';
+import 'package:rescuetrack/screens/irpage.dart';
+import 'package:rescuetrack/screens/loginpage.dart';
 
 class CardData {
   final String imagePath;
@@ -54,6 +57,46 @@ class Homepage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Contact other teams"),
+      ),
+      drawer: Drawer(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Loginpage()),
+                  );
+                },
+                style: TextButton.styleFrom(foregroundColor: Colors.blue),
+                child: const Text("Login here"),
+              ),
+              const SizedBox(height: 40),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const arpage()),
+                  );
+                },
+                style: TextButton.styleFrom(foregroundColor: Colors.blue),
+                child: const Text("Agency Registration"),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const irpage()),
+                  );
+                },
+                style: TextButton.styleFrom(foregroundColor: Colors.blue),
+                child: const Text("Individual Registration"),
+              ),
+            ],
+          ),
+        ),
       ),
       body: buildGridView(context),
     );

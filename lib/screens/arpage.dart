@@ -1,8 +1,8 @@
 // ignore_for_file: camel_case_types, unused_import
 
 import 'package:flutter/material.dart';
-import 'package:rescuetrack/screens/homepage.dart';
 import 'package:rescuetrack/main.dart';
+import 'package:rescuetrack/screens/homepage.dart';
 
 void main() {
   runApp(const arpage());
@@ -144,9 +144,10 @@ class _arpageState extends State<arpage> {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => const MyApp()),
-                  );
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const MyApp()),
+                    );
                   },
                   style:
                       ElevatedButton.styleFrom(backgroundColor: Colors.orange),
