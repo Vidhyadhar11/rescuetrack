@@ -64,7 +64,7 @@ class Homepage extends StatelessWidget {
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 8,
-        mainAxisSpacing: 16,
+        mainAxisSpacing: 8,
       ),
       itemCount: CardData.cardDataList.length,
       itemBuilder: (BuildContext context, int index) {
@@ -75,7 +75,7 @@ class Homepage extends StatelessWidget {
 
   Widget buildCard(BuildContext context, CardData cardData) {
     return Card(
-      elevation: 5,
+      elevation: 3,
       child: InkWell(
         onTap: () {
           Navigator.push(
