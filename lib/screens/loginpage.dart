@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:rescuetrack/main.dart';
 // import 'package:rescuetrack/screens/homescreen.dart';
 
 class Loginpage extends StatelessWidget {
@@ -59,7 +60,11 @@ class Loginpage extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context,'/home');
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MyApp()),
+                        );
                       },
                       style: TextButton.styleFrom(),
                       child: const Text("    Login    "),

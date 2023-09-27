@@ -144,7 +144,9 @@ class _arpageState extends State<arpage> {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/home');
+                    Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => const MyApp()),
+                  );
                   },
                   style:
                       ElevatedButton.styleFrom(backgroundColor: Colors.orange),

@@ -2,6 +2,7 @@
 // ignore_for_file: camel_case_types, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:rescuetrack/main.dart';
 // ignore: unused_import
 import 'package:rescuetrack/screens/homepage.dart';
 
@@ -145,7 +146,9 @@ class _ProfileFormState extends State<ProfileForm> {
           const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/home');
+              Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const MyApp()),
+              );
             },
             style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
             child: const Text("Register"),
