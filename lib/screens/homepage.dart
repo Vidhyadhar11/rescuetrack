@@ -75,7 +75,8 @@ class Homepage extends StatelessWidget {
 
   Widget buildCard(BuildContext context, CardData cardData) {
     return Card(
-      elevation: 3,
+      // color: Colors.lightBlue,
+      elevation: 10,
       child: InkWell(
         onTap: () {
           Navigator.push(
@@ -91,17 +92,20 @@ class Homepage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: 110,
-              width: 150,
-              child: Image.asset(
-                cardData.imagePath,
-                width: 100,
-                height: 100,
-                fit: BoxFit.fitHeight,
+              height: 100,
+              width: 100,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 25.0, 0, 0),
+                child: Image.asset(
+                  cardData.imagePath,
+                  width: 150,
+                  height: 150,
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 11.0, 0, 6.0),
+              padding: const EdgeInsets.fromLTRB(0, 40.0, 0, 10.0),
               child: Text(
                 cardData.label,
                 style: const TextStyle(fontSize: 16),

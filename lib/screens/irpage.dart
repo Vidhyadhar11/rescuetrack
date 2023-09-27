@@ -2,6 +2,8 @@
 // ignore_for_file: camel_case_types, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+// ignore: unused_import
+import 'package:rescuetrack/screens/homepage.dart';
 
 void main() {
   runApp(const irpage());
@@ -86,7 +88,9 @@ class _ProfileFormState extends State<ProfileForm> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: DropdownButton<String>(
-                value: _selectedVerificationProof.isNotEmpty ? _selectedVerificationProof : null,
+              value: _selectedVerificationProof.isNotEmpty
+                  ? _selectedVerificationProof
+                  : null,
               onChanged: (newValue) {
                 setState(() {
                   _selectedVerificationProof = newValue!;
@@ -102,7 +106,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                 color: Color.fromARGB(255, 0, 0, 0))),
                       ))
                   .toList(),
-              dropdownColor: Colors.grey,              
+              dropdownColor: Colors.grey,
             ),
           ),
           const SizedBox(height: 20),
@@ -141,7 +145,7 @@ class _ProfileFormState extends State<ProfileForm> {
           const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
-              // Handle registration logic here
+              Navigator.pushNamed(context, '/home');
             },
             style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
             child: const Text("Register"),
@@ -159,13 +163,11 @@ class _ProfileFormState extends State<ProfileForm> {
         labelText: label,
         labelStyle: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
         enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(
-            width: 2,
-            color: Colors.grey),
+          borderSide: BorderSide(width: 2, color: Colors.grey),
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
         focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.orange),
+          borderSide: BorderSide(color: Color.fromARGB(255, 3, 3, 3)),
         ),
       ),
     );
