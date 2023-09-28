@@ -53,12 +53,12 @@ class _UserProfileState extends State<UserProfile> {
       children: <Widget>[
         // Top Banner
         Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+          padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
           child: SingleChildScrollView(
             child: Container(
               color: const Color.fromARGB(255, 0, 0, 0),
               width: screenWidth,
-              height: screenHeight * 0.25,
+              height: screenHeight * 0.35,
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: const Column(
                 children: <Widget>[
@@ -76,6 +76,7 @@ class _UserProfileState extends State<UserProfile> {
                       color: Colors.white,
                     ),
                   ),
+                  SizedBox(height: 8),
                   Text(
                     "Mobile Number",
                     style: TextStyle(
@@ -83,8 +84,25 @@ class _UserProfileState extends State<UserProfile> {
                       color: Colors.white,
                     ),
                   ),
+                  SizedBox(height: 8),
                   Text(
                     "Current Role",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    "Experience",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    "Current Agency",
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.white,
@@ -96,13 +114,14 @@ class _UserProfileState extends State<UserProfile> {
           ),
         ),
 
-        // Middle Widget - Google Maps
-        // Replace YOUR_API_KEY with your actual Google Maps API key
+        // Button to view the full map
+
+        // Google Maps Preview
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
           child: SizedBox(
             width: screenWidth,
-            height: screenHeight * 0.4,
+            height: screenHeight * 0.20,
             child: _currentPosition != null
                 ? GoogleMap(
                     onMapCreated: _onMapCreated,
@@ -116,40 +135,62 @@ class _UserProfileState extends State<UserProfile> {
                     markers: _markers,
                   )
                 : const Center(
-                    child:
-                        CircularProgressIndicator()), // Show loading indicator while fetching location
+                    child: CircularProgressIndicator(),
+                  ),
           ),
         ),
 
-        // Bottom Contact Support and Help Buttons
-        Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.email),
-                  onPressed: () {
-                    // Implement email support functionality
-                  },
+        ElevatedButton(
+          onPressed: () {
+            if (_currentPosition != null) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FullMapScreen(
+                    initialPosition: LatLng(
+                      _currentPosition!.latitude,
+                      _currentPosition!.longitude,
+                    ),
+                  ),
                 ),
-                const Text("Contact Support"),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.help),
-                  onPressed: () {
-                    // Implement help functionality
-                  },
-                ),
-                const Text("Help"),
-              ],
-            ),
-          ],
+              );
+            }
+          },
+          child: const Text("View Full Map"),
+        ),
+
+        // Contact Support and Help Buttons
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  IconButton(
+                    icon: const Icon(Icons.email),
+                    onPressed: () {
+                      // Implement email support functionality
+                    },
+                  ),
+                  const Text("Contact Support"),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  IconButton(
+                    icon: const Icon(Icons.help),
+                    onPressed: () {
+                      // Implement help functionality
+                    },
+                  ),
+                  const Text("Help"),
+                ],
+              ),
+            ],
+          ),
         ),
       ],
     );
@@ -198,5 +239,44 @@ class _UserProfileState extends State<UserProfile> {
         _markers.add(newMarker);
       });
     }
+  }
+}
+
+class FullMapScreen extends StatelessWidget {
+  final LatLng initialPosition;
+
+  const FullMapScreen({super.key, required this.initialPosition});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Full Map View"),
+      ),
+      body: FullMapView(initialPosition: initialPosition),
+    );
+  }
+}
+
+class FullMapView extends StatelessWidget {
+  final LatLng initialPosition;
+
+  const FullMapView({super.key, required this.initialPosition});
+
+  @override
+  Widget build(BuildContext context) {
+    return GoogleMap(
+      initialCameraPosition: CameraPosition(
+        target: initialPosition,
+        zoom: 16.0,
+      ),
+      markers: {
+        Marker(
+          markerId: const MarkerId("currentLocation"),
+          position: initialPosition,
+          infoWindow: const InfoWindow(title: "Current Location"),
+        ),
+      },
+    );
   }
 }
