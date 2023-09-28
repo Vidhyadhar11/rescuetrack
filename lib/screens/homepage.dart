@@ -131,30 +131,32 @@ class Homepage extends StatelessWidget {
             ),
           );
         },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 100,
-              width: 100,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 25.0, 0, 0),
-                child: Image.asset(
-                  cardData.imagePath,
-                  width: 150,
-                  height: 150,
-                  fit: BoxFit.contain,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 100,
+                width: 100,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 25.0, 0, 0),
+                  child: Image.asset(
+                    cardData.imagePath,
+                    width: 150,
+                    height: 150,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 40.0, 0, 10.0),
-              child: Text(
-                cardData.label,
-                style: const TextStyle(fontSize: 16),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 25.0, 0, 10.0),
+                child: Text(
+                  cardData.label,
+                  style: const TextStyle(fontSize: 16),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
