@@ -75,5 +75,7 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        renderscriptTargetApi 33
+        renderscriptSupportModeEnabled true
     }
 }
