@@ -1,9 +1,8 @@
 // this is individual registration page
-// ignore_for_file: camel_case_types, library_private_types_in_public_api
+// ignore_for_file: camel_case_types, library_private_types_in_public_api, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:rescuetrack/main.dart';
-// ignore: unused_import
 import 'package:rescuetrack/screens/homepage.dart';
 
 void main() {
