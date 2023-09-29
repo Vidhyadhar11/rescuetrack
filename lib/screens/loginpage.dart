@@ -10,7 +10,7 @@ class Loginpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: const Color.fromARGB(180, 255, 255, 255),
+      color: const Color.fromARGB(235, 255, 255, 255),
       child: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -27,7 +27,7 @@ class Loginpage extends StatelessWidget {
               ),
               Container(
                 decoration: const BoxDecoration(
-                  color: Color.fromRGBO(237, 236, 236, 0.511),
+                  color: Color.fromARGB(0, 255, 255, 255),
                   borderRadius: BorderRadius.all(Radius.circular(32)),
                   // border: Border(bottom: BorderSide(strokeAlign: BorderSide.strokeAlignInside))
                 ),
@@ -39,6 +39,11 @@ class Loginpage extends StatelessWidget {
                         decoration: const InputDecoration(
                           hintText: "Enter email",
                           labelText: "Email",
+                          labelStyle: TextStyle(color: Colors.black87),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
                         ),
                       ),
                     ),
@@ -52,6 +57,11 @@ class Loginpage extends StatelessWidget {
                         decoration: const InputDecoration(
                           hintText: "Enter password",
                           labelText: "Password",
+                          labelStyle: TextStyle(color: Colors.black87),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
                         ),
                       ),
                     ),
@@ -66,7 +76,8 @@ class Loginpage extends StatelessWidget {
                               builder: (context) => const MyApp()),
                         );
                       },
-                      style: TextButton.styleFrom(),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.orange),
                       child: const Text("    Login    "),
                     ),
                     const SizedBox(

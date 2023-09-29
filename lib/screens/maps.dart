@@ -23,6 +23,8 @@ class _MapsState extends State<Maps> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Location"),
+        backgroundColor: Colors.orange,
+        foregroundColor: Colors.black87,
       ),
       body: Center(
         child: Column(
@@ -52,6 +54,9 @@ class _MapsState extends State<Maps> {
                     // Add a new location to the list
                     _addLocation();
                   },
+                  style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.orange,
+                          foregroundColor: Colors.black87,),
                   child: const Text("Add Location"),
                 ),
               ],

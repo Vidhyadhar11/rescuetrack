@@ -1,10 +1,9 @@
-// ignore_for_file: avoid_web_libraries_in_flutter, use_key_in_widget_constructors, annotate_overrides
-
 import 'package:flutter/material.dart';
 import 'package:rescuetrack/screens/arpage.dart';
 import 'package:rescuetrack/screens/chatpage.dart';
 import 'package:rescuetrack/screens/irpage.dart';
 import 'package:rescuetrack/screens/loginpage.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CardData {
   final String imagePath;
@@ -44,58 +43,98 @@ class CardData {
         imagePath: 'assets/images/Screenshot 2023-09-14 224638.png',
         label: 'SDRF10'),
   ];
-
-  @override
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
 class Homepage extends StatelessWidget {
-  const Homepage({Key? key});
+  const Homepage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Contact other teams"),
+  //       GoogleFonts.openSans(
+  //   textStyle: const TextStyle(
+  //     fontSize: 20,
+  //     fontWeight: FontWeight.bold,
+  //   ),
+  // ),
+        backgroundColor: Colors.orange,
+        foregroundColor: Colors.black87,
       ),
       drawer: Drawer(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Loginpage()),
-                  );
-                },
-                style: TextButton.styleFrom(foregroundColor: Colors.blue),
-                child: const Text("Login here"),
+        child: ListView(
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.orangeAccent,
               ),
-              const SizedBox(height: 40),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const arpage()),
-                  );
-                },
-                style: TextButton.styleFrom(foregroundColor: Colors.blue),
-                child: const Text("Agency Registration"),
+              child: CircleAvatar(
+                backgroundImage: AssetImage(
+                    "assets/images/Screenshot 2023-09-14 224446.png"),
               ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const irpage()),
-                  );
-                },
-                style: TextButton.styleFrom(foregroundColor: Colors.blue),
-                child: const Text("Individual Registration"),
-              ),
-            ],
-          ),
+            ),
+            ListTile(
+              title: const Text("Login here"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Loginpage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text("Agency Registration"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const arpage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text("Individual Registration"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const irpage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text("Help"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const irpage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text("Contact Support"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const irpage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text("Settings"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const irpage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text("Logout"),
+              onTap: () {
+                // Implement logout functionality
+              },
+            ),
+          ],
         ),
       ),
       body: buildGridView(context),
@@ -118,7 +157,6 @@ class Homepage extends StatelessWidget {
 
   Widget buildCard(BuildContext context, CardData cardData) {
     return Card(
-      // color: Colors.lightBlue,
       elevation: 10,
       child: InkWell(
         onTap: () {
@@ -131,32 +169,27 @@ class Homepage extends StatelessWidget {
             ),
           );
         },
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 100,
-                width: 100,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 25.0, 0, 0),
-                  child: Image.asset(
-                    cardData.imagePath,
-                    width: 150,
-                    height: 150,
-                    fit: BoxFit.contain,
-                  ),
-                ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 100,
+              width: 100,
+              child: Image.asset(
+                cardData.imagePath,
+                width: 150,
+                height: 150,
+                fit: BoxFit.cover,
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 25.0, 0, 10.0),
-                child: Text(
-                  cardData.label,
-                  style: const TextStyle(fontSize: 16),
-                ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 25.0, 0, 10.0),
+              child: Text(
+                cardData.label,
+                style: const TextStyle(fontSize: 16),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
