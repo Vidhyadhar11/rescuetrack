@@ -29,8 +29,7 @@ class Loginpage extends StatelessWidget {
                 decoration: const BoxDecoration(
                   color: Color.fromARGB(0, 255, 255, 255),
                   borderRadius: BorderRadius.all(Radius.circular(32)),
-                  // border: Border(bottom: BorderSide(strokeAlign: BorderSide.strokeAlignInside))
-                ),
+                  ),
                 child: Column(
                   children: [
                     Padding(

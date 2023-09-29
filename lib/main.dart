@@ -7,33 +7,6 @@ import 'package:rescuetrack/screens/maps.dart';
 import 'package:rescuetrack/screens/profilepage.dart';
 import 'package:rescuetrack/screens/irpage.dart';
 import 'package:rescuetrack/screens/arpage.dart';
-// import 'package:google_fonts/google_fonts.dart';
-
-// void main() {
-//   runApp(const MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//         themeMode: ThemeMode.light,
-//         theme: ThemeData(
-//           primarySwatch: Colors.deepPurple,
-//           fontFamily: GoogleFonts.lato().fontFamily,
-//         ),
-//         darkTheme: ThemeData(
-//           brightness: Brightness.dark,
-//         ),
-//         routes: {
-//           "/": (context) => const Loginpage(),
-//           "/home": (context) => const Homepage(),
-//           "/login": (context) => const Loginpage(),
-//         });
-//   }
-// }
 
 void main() => runApp(const MyApp());
 
@@ -84,15 +57,6 @@ class _MyAppState extends State<MyApp> {
           ],
         ),
       ),
-        // routes: {
-        //   "/": (context) => const Homepage(),
-        //   "/home": (context) => const Homepage(),
-        //   "/login": (context) => const Loginpage(),
-        //   "/maps":(context) => const Maps(),
-        //   "/profile":(context) => const ProfilePage(),
-        //   "/ir":(context) => const irpage(),
-        //   "/ar":(context) => const arpage(),
-        // }
         );
         }
         }

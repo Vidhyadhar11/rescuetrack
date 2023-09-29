@@ -53,12 +53,6 @@ class Homepage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Contact other teams"),
-  //       GoogleFonts.openSans(
-  //   textStyle: const TextStyle(
-  //     fontSize: 20,
-  //     fontWeight: FontWeight.bold,
-  //   ),
-  // ),
         backgroundColor: Colors.orange,
         foregroundColor: Colors.black87,
       ),
