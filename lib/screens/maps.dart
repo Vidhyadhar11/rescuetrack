@@ -1,8 +1,8 @@
 // ignore_for_file: unnecessary_null_comparison, library_private_types_in_public_api, avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class Maps extends StatefulWidget {
@@ -15,13 +15,16 @@ class Maps extends StatefulWidget {
 class _MapsState extends State<Maps> {
   Position? _currentPosition;
   late GoogleMapController _controller;
-  final Set<Marker> _markers = {};
+  final List<Marker> _locationMarkers = []; // List for location markers
+  final List<Marker> _eventMarkers = []; // List for event markers
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Location"),
+        backgroundColor: Colors.orange,
+        foregroundColor: Colors.black87,
       ),
       body: Center(
         child: Column(
@@ -38,13 +41,26 @@ class _MapsState extends State<Maps> {
                     ),
                     zoom: 16.0,
                   ),
-                  markers: _markers,
+                  markers: <Marker>{
+                    ..._locationMarkers,
+                    ..._eventMarkers
+                  }, // Combine both marker lists
                 ),
               ),
-                // const Center(
-                //     child:
-                //         CircularProgressIndicator()),
-            // if (_currentPosition == null) const Text("Location not available"),
+            Column(
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    // Add a new location to the list
+                    _addLocation();
+                  },
+                  style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.orange,
+                          foregroundColor: Colors.black87,),
+                  child: const Text("Add Location"),
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -53,7 +69,6 @@ class _MapsState extends State<Maps> {
 
   void _onMapCreated(GoogleMapController controller) {
     _controller = controller;
-    _addMarker();
   }
 
   @override
@@ -81,22 +96,34 @@ class _MapsState extends State<Maps> {
     }
   }
 
-  void _addMarker() {
-    if (_currentPosition != null) {
-      Marker newMarker = Marker(
-        markerId: const MarkerId("currentLocation"),
-        position: LatLng(
-          _currentPosition!.latitude,
-          _currentPosition!.longitude,
-        ),
-        infoWindow: const InfoWindow(
-          title: "Current Location",
-        ),
+  void _addLocation() async {
+    final status = await Permission.location.request();
+
+    if (status.isGranted) {
+      // Get the current location
+      final Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best,
+        forceAndroidLocationManager: true,
       );
 
-      setState(() {
-        _markers.add(newMarker);
-      });
+      if (position != null) {
+        // Create a new marker for the location
+        Marker newMarker = Marker(
+          markerId: MarkerId(
+              DateTime.now().toString()), // Unique marker ID based on timestamp
+          position: LatLng(position.latitude, position.longitude),
+          infoWindow: InfoWindow(
+            title: "Location ${_locationMarkers.length + 1}", // Location number
+          ),
+        );
+
+        setState(() {
+          // Add the new marker to the location markers list
+          _locationMarkers.add(newMarker);
+        });
+      }
+    } else {
+      print("Location permission denied");
     }
   }
 }

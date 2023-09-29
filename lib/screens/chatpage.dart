@@ -34,6 +34,8 @@ class _ChatPageState extends State<ChatPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('chat'),
+        backgroundColor: Colors.orange,
+        foregroundColor: Colors.black87,
       ),
       body: Column(
         children: <Widget>[

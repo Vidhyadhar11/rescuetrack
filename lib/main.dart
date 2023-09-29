@@ -66,7 +66,7 @@ class _MyAppState extends State<MyApp> {
               _currentIndex = index;
             });
           },
-          backgroundColor: Colors.lightBlueAccent,
+          backgroundColor: Colors.orange,
           selectedItemColor: Colors.black87,
           items: const [
             BottomNavigationBarItem(

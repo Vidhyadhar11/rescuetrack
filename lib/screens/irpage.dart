@@ -24,6 +24,8 @@ class _irpageState extends State<irpage> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text("individual registration"),
+          backgroundColor: Colors.orange,
+        foregroundColor: Colors.black87,
         ),
         body: const SingleChildScrollView(
           child: Padding(
@@ -150,7 +152,8 @@ class _ProfileFormState extends State<ProfileForm> {
               MaterialPageRoute(builder: (context) => const MyApp()),
               );
             },
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.orange,
+        foregroundColor: Colors.black87,),
             child: const Text("Register"),
           ),
         ],

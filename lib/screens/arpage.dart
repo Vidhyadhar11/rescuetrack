@@ -33,6 +33,8 @@ class _arpageState extends State<arpage> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text("Agency Registration"),
+          backgroundColor: Colors.orange,
+        foregroundColor: Colors.black87,
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -150,7 +152,8 @@ class _arpageState extends State<arpage> {
                     );
                   },
                   style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.orange),
+                      ElevatedButton.styleFrom(backgroundColor: Colors.orange,
+        foregroundColor: Colors.black87,),
                   child: const Text("Register"),
                 ),
               ],
