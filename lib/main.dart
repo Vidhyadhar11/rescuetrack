@@ -7,8 +7,16 @@ import 'package:rescuetrack/screens/maps.dart';
 import 'package:rescuetrack/screens/profilepage.dart';
 import 'package:rescuetrack/screens/irpage.dart';
 import 'package:rescuetrack/screens/arpage.dart';
+import 'package:get/get.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(
+    const GetMaterialApp(
+      home: Homepage(),
+    ),
+  );
+}
+
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
