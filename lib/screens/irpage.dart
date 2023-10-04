@@ -2,12 +2,10 @@
 // ignore_for_file: camel_case_types, library_private_types_in_public_api, unused_import
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rescuetrack/main.dart';
 import 'package:rescuetrack/screens/homepage.dart';
 
-void main() {
-  runApp(const irpage());
-}
 
 class irpage extends StatefulWidget {
   const irpage({super.key});
@@ -19,12 +17,12 @@ class irpage extends StatefulWidget {
 class _irpageState extends State<irpage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text("individual registration"),
           backgroundColor: Colors.orange,
-        foregroundColor: Colors.black87,
+          foregroundColor: Colors.black87,
         ),
         body: const SingleChildScrollView(
           child: Padding(
@@ -147,17 +145,33 @@ class _ProfileFormState extends State<ProfileForm> {
           const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const MyApp()),
-              );
+              _validateDate(_nameController, _roleController);
             },
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.orange,
-        foregroundColor: Colors.black87,),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.orange,
+              foregroundColor: Colors.black87,
+            ),
             child: const Text("Register"),
           ),
         ],
       ),
     );
+  }
+
+  void _validateDate(TextEditingController nameController,
+      TextEditingController roleController) {
+    if (nameController.text.isNotEmpty && roleController.text.isNotEmpty) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const MyApp()));
+    } else {
+      Get.snackbar(
+        "REQUIRED",
+        "All Fields Required",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.blue.shade50,
+        icon: const Icon(Icons.warning_amber_rounded),
+      );
+    }
   }
 
   Widget _buildTextField(String label, TextEditingController controller) {
