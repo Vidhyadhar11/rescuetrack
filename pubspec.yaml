@@ -43,6 +43,7 @@ dependencies:
   geocoding: ^2.1.0
   permission_handler: ^11.0.0
   get: ^4.6.6
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
